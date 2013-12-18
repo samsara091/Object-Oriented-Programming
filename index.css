@@ -1,0 +1,44 @@
+#container
+{
+	width: 960px;
+}
+#register
+{
+	width: 400px;
+	float: left;
+
+}
+#login
+{
+	width: 400px;
+	float:right;
+}
+#register_button
+{
+margin-left: 140px;
+margin-top: 30px;
+}
+
+#login_button
+{
+margin-left: 140px;
+margin-top: 30px;
+}
+
+#friends_info
+{
+margin-top: 50px;
+}
+
+#user_info
+{
+margin-top: 50px;
+}
+th
+{
+background-color: gray;
+}
+#add_friend_button
+{
+	border:gray;
+}
