@@ -1,0 +1,93 @@
+<?php
+    class HTML_Helper
+{
+    	var $first_name;
+        var $last_name;
+        var $nick_name;
+            function print_table($names)
+            {
+                 $html =  "<table border ='1'>
+                        <tr>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Nickname</th>
+                        </tr>";
+                  foreach ($names as $name){
+                     $html .=   "
+                        <tr><td>" .  $name['first_name'] . "</td>
+                        <td>" . $name['last_name'] . "</td>
+                        <td>"  . $name['nick_name'] . " </td>
+                        </tr>";
+                    }
+                    $html .= "</table>";
+                    echo $html;
+            }
+            function print_select($name, $arr_options)
+            {
+                $html = "</br><select name='" . $name . "'>";
+                for($i=0; $i<count($arr_options); $i++)
+                {
+                    $html.= "<option value=". $arr_options[$i] .">". $arr_options[$i] . "</option>";
+                }
+                $html.="</select>";
+                return $html;
+            }
+            function print_select_from_query($column_name,$select_name, $query_results)
+            {
+                $html = "<select name='" . $select_name . "'>";
+                foreach($query_results as $result){
+                    $html.= '<option value="'. $result[$column_name] .'">'. $result[$column_name] . '</option>';
+                }
+                $html.="</select>";
+                return $html;
+            }
+            function print_country($query_results) {
+                $html = "<p>";
+                foreach($query_results as $result){
+                    $html.= "Country:" . $result['Name'] .'<br/>';
+                    $html.= "Continent:" . $result['Continent'] .'<br/>';
+                    $html.= "Region:" . $result['Region'] .'<br/>';
+                    $html.= "Population:" . $result['Population'] .'<br/>';
+                    $html.= "Life Expectancy:" . $result['LifeExpectancy'] .'<br/>';
+                    $html.= "Government Form:" . $result['GovernmentForm'] .'<br/>';
+                }
+                $html .= "</p>";
+                return $html;
+            }
+            function print_welcome($name, $email)
+            {
+                $html = "<h3>Welcome, " . $name . "!</h3><h3>". $email ."</h3>";
+                return $html;
+            }
+            function print_friends_table($names)
+            {
+                $html = "<h2>List of Friends</h2><br><table border ='1'><tr><th>Name</th><th>Email</th></tr>";
+                  foreach ($names as $name){
+                        if ($name['type']=="Friend") {
+                             $html .=   "<tr><td>" .  $name['name'] 
+                             . "</td><td>" . $name['email'] . "</td></tr>";
+                        }
+                    }
+                    $html .= "</table>";
+                    return $html;
+            }
+            function print_users_table($names)
+            {
+                $html = "<h2>List of Users who subscribed to Friend Finder<h2></br><table border ='1'><tr><th>Name</th><th>Email</th><th>Action</th></tr>";
+                  foreach ($names as $key => $name){
+                     $html .=   "<tr>"
+                        . "<td>" .  $name['name'] . "</td>"
+                        . "<td>" . $name['email'] . "</td>";
+                        if ($name['type']=="Add as a friend") 
+                        {
+                            $html .= "<td><a href='#' id='add_friend_button' onclick='addFriend(" .$key . "); return false;'>Add Friend</a></td>";
+                        } else {
+                            $html.= "<td>" . $name['type'] . "</td>";
+                        }  
+                        $html .= "</tr>";
+                    }
+                    $html .= "</table>";
+                    return $html;
+            }
+};
+?>
